@@ -1,9 +1,14 @@
 import express from "express";
+import consign from "consign";
 
 const PORT = 4000;
 
 const app = express();
 
-app.get("/",(request,response) => response.json({status:'NTask API'}));
+app.set("json spaces", 4);
 
-app.listen(PORT,() => console.log(`NTask API - porta ${PORT}`));
+consign().include("routes").into(app);
+
+app.listen(PORT, () => {
+  console.log(`Ntask API listening on port = ${PORT}`);
+});
